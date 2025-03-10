@@ -1,25 +1,35 @@
-import Profile from "../Profile/Profile";
-import FriendList from "../FriendList/FriendList";
-import TransactionHistory from "../TransactionHistory/TransactionHistory";
+import { Routes, Route, NavLink } from "react-router-dom";
+import clsx from "clsx";
 
-import userData from "../../userData.json";
-import friends from "../../friends.json";
-import transactionHistory from "../../transactionHistory.json";
+import HomePage from "../../pages/HomePage/HomePage";
+import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
+import MoviesPage from "../../pages/MoviesPage/MoviesPage";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+
+import css from "./App.module.css";
 
 function App() {
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
+
   return (
     <>
-      <Profile
-        name={userData.username}
-        tag={userData.tag}
-        location={userData.location}
-        avatar={userData.avatar}
-        stats={userData.stats}
-      />
-      <hr />
-      <FriendList friend={friends} />
-      <hr />
-      <TransactionHistory transactions={transactionHistory} />
+      <nav className={css.nav}>
+        <NavLink to="/" className={buildLinkClass}>
+          Home
+        </NavLink>
+        <NavLink to="/movies" className={buildLinkClass}>
+          MoviesPage
+        </NavLink>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 }
