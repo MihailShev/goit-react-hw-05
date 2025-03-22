@@ -6,7 +6,6 @@ export {
   fetchDetailsMovie,
   fetchDetailsCredits,
   fetchMovieReviews,
-  //   getImage,
 };
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
@@ -42,12 +41,12 @@ const fetchDetailsMovie = async (movieId) => {
 
 const fetchDetailsCredits = async (movieId) => {
   const resp = await axios(`movie/${movieId}/credits`, urlFetchParams);
-  return resp.data.crew;
+  return resp.data.cast;
 };
 
 const fetchMovieReviews = async (movieId) => {
   const resp = await axios(`movie/${movieId}/reviews`, urlFetchParams);
-  return resp.data.crew;
+  return resp.data.results;
 };
 
 // const getImage = (path) => `https://image.tmdb.org/t/p/original${path}`;

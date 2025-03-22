@@ -1,5 +1,5 @@
 function MoviesPage() {
-  return <>MoviesPage</>;
+  return <div></div>;
 }
 
 export default MoviesPage;

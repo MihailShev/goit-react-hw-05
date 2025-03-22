@@ -1,0 +1,27 @@
+.cont {
+  width: 1408px;
+  margin: 20px auto 0 auto;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.link {
+  text-decoration: underline;
+  width: 105px;
+  padding: 5px;
+}
+
+.inner_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.p {
+  width: 700px;
+  text-wrap: balance;
+}
