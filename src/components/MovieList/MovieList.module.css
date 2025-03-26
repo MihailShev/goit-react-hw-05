@@ -1,0 +1,11 @@
+.link {
+}
+
+.title {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.link:hover .title {
+  text-decoration: underline;
+}

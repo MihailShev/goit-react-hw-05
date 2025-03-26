@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { fetchSearchQuery, sliceText } from "../../js/fetch-api";
+import { useSearchParams } from "react-router-dom";
+import { fetchSearchQuery } from "../../js/fetch-api";
 import css from "./MoviesPage.module.css";
 import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
 
 function MoviesPage() {
   const [loader, setLoader] = useState(false);
   const [movie, setMovie] = useState([]);
-  const location = useLocation();
   const [searchQuery, setQuery] = useSearchParams();
   const query = searchQuery.get("q") ?? "";
 
@@ -53,16 +53,8 @@ function MoviesPage() {
 
       <ul className={css.ul}>
         {movie.map(({ id, backdrop_path, title }) => (
-          <li className={css.li} key={id}>
-            <Link to={`/movies/${id}`} state={location}>
-              <img
-                src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-                alt="Movie photo"
-                width={250}
-              />
-
-              <h2 className={css.title}>{sliceText(title)}</h2>
-            </Link>
+          <li key={id} className={css.li}>
+            {<MovieList id={id} backdrop_path={backdrop_path} title={title} />}
           </li>
         ))}
       </ul>

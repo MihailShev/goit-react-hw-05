@@ -6,7 +6,7 @@ import css from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
   const [loader, setLoader] = useState(false);
-  const [movieId, setMovieId] = useState({});
+  const [movieDetails, setMovieDetails] = useState({});
   const params = useParams();
   const location = useLocation();
   const backLink = useRef(location.state);
@@ -16,7 +16,7 @@ function MovieDetailsPage() {
       try {
         setLoader(false);
         const data = await fetchDetailsMovie(params.movieId);
-        setMovieId(data);
+        setMovieDetails(data);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -36,22 +36,22 @@ function MovieDetailsPage() {
 
       <div className={css.wrap}>
         <img
-          src={`https://image.tmdb.org/t/p/original${movieId.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`}
           alt=""
           width={350}
         />
 
         <div className={css.inner_wrap}>
-          <h2>{movieId.original_title}</h2>
-          <span>User Score {movieId.vote_average * 10}%</span>
+          <h2>{movieDetails.original_title}</h2>
+          <span>User Score {movieDetails.vote_average * 10}%</span>
 
           <h3>Overview</h3>
-          <p className={css.p}>{movieId.overview}</p>
+          <p className={css.p}>{movieDetails.overview}</p>
 
           <h3>Genres</h3>
-          <p>{movieId.genres?.map((genre) => genre.name).join(", ")}</p>
+          <p>{movieDetails.genres?.map((genre) => genre.name).join(", ")}</p>
 
-          <Link className={css.link} to={movieId.homepage} target="_blank">
+          <Link className={css.link} to={movieDetails.homepage} target="_blank">
             Watch a movie
           </Link>
         </div>

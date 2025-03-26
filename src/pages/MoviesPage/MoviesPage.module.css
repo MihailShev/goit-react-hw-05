@@ -15,15 +15,6 @@
   align-items: center;
 }
 
-.title {
-  margin-top: 5px;
-  font-size: 16px;
-}
-
-.li:hover .title {
-  text-decoration: underline;
-}
-
 .div {
   width: 350px;
   margin: 20px auto 0 auto;
