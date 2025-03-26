@@ -6,6 +6,7 @@ export {
   fetchDetailsMovie,
   fetchDetailsCredits,
   fetchMovieReviews,
+  sliceText,
 };
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
@@ -28,10 +29,10 @@ const fetchTrending = async () => {
 
 const fetchSearchQuery = async (query) => {
   const resp = await axios(
-    `search/movie?include_adult=false&query=${query}`,
+    `search/movie?include_adult=false&page=1&query=${query}`,
     urlFetchParams
   );
-  return resp.data;
+  return resp.data.results;
 };
 
 const fetchDetailsMovie = async (movieId) => {
@@ -49,6 +50,5 @@ const fetchMovieReviews = async (movieId) => {
   return resp.data.results;
 };
 
-// const getImage = (path) => `https://image.tmdb.org/t/p/original${path}`;
-// // /cij4dd21v2Rk2YtUQbV5kW69WB2.jpg
-// console.log(getImage("/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"));
+const sliceText = (text) =>
+  text.length > 23 ? `${text.slice(0, 23)}...` : text;

@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchDetailsMovie } from "../../js/fetch-api";
 import Loader from "../../components/Loader/Loader";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
   const [loader, setLoader] = useState(false);
   const [movieId, setMovieId] = useState({});
   const params = useParams();
+  const location = useLocation();
+  const backLink = useRef(location.state);
 
   useEffect(() => {
     async function getMovieId() {
@@ -26,6 +28,10 @@ function MovieDetailsPage() {
 
   return (
     <div className={css.cont}>
+      <Link className={css.but} to={backLink.current}>
+        Go back
+      </Link>
+
       {loader && <Loader />}
 
       <div className={css.wrap}>
@@ -61,7 +67,10 @@ function MovieDetailsPage() {
         <Link className={css.link} to="rewiews">
           Rewiews
         </Link>
-        <Outlet />
+
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
       <hr />
     </div>

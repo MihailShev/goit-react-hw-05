@@ -1,0 +1,42 @@
+.ul {
+  width: 1499px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px auto 0 auto;
+}
+
+.li {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.li:hover .title {
+  text-decoration: underline;
+}
+
+.div {
+  width: 350px;
+  margin: 20px auto 0 auto;
+}
+
+.but {
+  margin-left: 10px;
+  border: 1px solid gray;
+  padding: 7px;
+  border-radius: 4px;
+  transition: border-color 250ms ease-in;
+}
+
+.but:hover {
+  border-color: white;
+}

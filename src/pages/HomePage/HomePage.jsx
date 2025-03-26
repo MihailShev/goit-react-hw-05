@@ -1,20 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import css from "./HomePage.module.css";
 import Loader from "../../components/Loader/Loader";
 import { useEffect, useState } from "react";
-import { fetchTrending } from "../../js/fetch-api";
+import { fetchTrending, sliceText } from "../../js/fetch-api";
 
 function HomePage() {
-  const sliceText = (text) =>
-    text.length > 23 ? `${text.slice(0, 23)}...` : text;
-
   const [loader, setLoader] = useState(false);
   const [treidingMovies, setTreidingMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     async function getTraidingMovies() {
       try {
-        // setLoader(true);
+        setLoader(true);
 
         const data = await fetchTrending();
         setTreidingMovies(data.results);
@@ -25,7 +23,7 @@ function HomePage() {
       }
     }
     getTraidingMovies();
-  }, [treidingMovies]);
+  }, []);
 
   return (
     <>
@@ -34,7 +32,7 @@ function HomePage() {
       <ul className={css.ul}>
         {treidingMovies.map(({ id, backdrop_path, title }) => (
           <li className={css.li} key={id}>
-            <Link to={`/movies/${id}`}>
+            <Link to={`/movies/${id}`} state={location}>
               <img
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 alt="Movie photo"

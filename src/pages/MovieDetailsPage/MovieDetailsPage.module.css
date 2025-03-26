@@ -25,3 +25,19 @@
   width: 700px;
   text-wrap: balance;
 }
+
+.but {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  transition: border-color 250ms ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+.but:hover {
+  border-color: white;
+}
