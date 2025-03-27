@@ -1,7 +1,13 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchDetailsMovie } from "../../js/fetch-api";
 import Loader from "../../components/Loader/Loader";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
@@ -61,12 +67,12 @@ function MovieDetailsPage() {
       <div className={css.inner_wrap}>
         <p>Additional information</p>
 
-        <Link className={css.link} to="cast">
+        <NavLink className={css.link} to="cast">
           Cast
-        </Link>
-        <Link className={css.link} to="rewiews">
+        </NavLink>
+        <NavLink className={css.link} to="reviews">
           Rewiews
-        </Link>
+        </NavLink>
 
         <Suspense fallback={<Loader />}>
           <Outlet />

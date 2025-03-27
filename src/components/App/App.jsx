@@ -1,14 +1,7 @@
-import { Routes, Route, NavLink } from "react-router-dom";
-import clsx from "clsx";
-import css from "./App.module.css";
+import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "../Loader/Loader";
-
-// import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
-// import MoviesPage from "../../pages/MoviesPage/MoviesPage";
-// import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-// import MovieCast from "../MovieCast/MovieCast";
-// import MovieReviews from "../MovieReviews/MovieReviews";
+import Navigation from "../Navigation/Navigation";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("../../pages/MoviesPage/MoviesPage"));
@@ -22,20 +15,9 @@ const MovieCast = lazy(() => import("../MovieCast/MovieCast"));
 const MovieReviews = lazy(() => import("../MovieReviews/MovieReviews"));
 
 function App() {
-  const buildLinkClass = ({ isActive }) => {
-    return clsx(css.link, isActive && css.active);
-  };
-
   return (
     <>
-      <nav className={css.nav}>
-        <NavLink to="/" className={buildLinkClass}>
-          Home
-        </NavLink>
-        <NavLink to="/movies" className={buildLinkClass}>
-          MoviesPage
-        </NavLink>
-      </nav>
+      <Navigation />
 
       <Suspense fallback={<Loader />}>
         <Routes>
